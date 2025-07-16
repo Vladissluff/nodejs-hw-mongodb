@@ -16,7 +16,7 @@ export const setupServer = () => {
     response.send('Welcome to "Contacts book". Please pass to /contacts');
   });
 
- httpServer.get('/api/contacts', (request, response) => {
+ httpServer.get('/contacts', (request, response) => {
   getAllContacts().then((result) =>
     response.status(200).json({
       status: 200,
@@ -26,7 +26,7 @@ export const setupServer = () => {
   );
 });
 
-httpServer.get('/api/contacts/:contactId', (request, response) => {
+httpServer.get('/contacts/:contactId', (request, response) => {
   const { contactId } = request.params;
   getContactById(contactId)
     .then((result) => {
