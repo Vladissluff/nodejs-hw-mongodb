@@ -18,7 +18,7 @@ export const setupServer = () => {
   httpServer.use(express.json()); 
   httpServer.use(express.urlencoded({ extended: true })); 
 
-  httpServer.use('/api/contacts', router);
+  httpServer.use(router);
 
   httpServer.use(notFoundHandler);
   httpServer.use(errorHandler);

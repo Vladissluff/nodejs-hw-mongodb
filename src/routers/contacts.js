@@ -12,11 +12,12 @@ const endpoints = Router();
 endpoints.get('/', (request, response) => {
   response.send('Welcome to "Contacts book". Please pass to /contacts');
 });
-endpoints.get('/', getAllContactsController);
-endpoints.get('/:contactId', getContactByIdController);
 
-endpoints.post('/', createContactController);
-endpoints.patch('/:contactId', updateContactByIdController);
-endpoints.delete('/:contactId', deleteContactByIdController);
+endpoints.get('/contacts', getAllContactsController);
+endpoints.get('/contacts/:contactId', getContactByIdController);
+
+endpoints.post('/contacts', createContactController);
+endpoints.patch('/contacts/:contactId', updateContactByIdController);
+endpoints.delete('/contacts/:contactId', deleteContactByIdController);
 
 export default endpoints;
