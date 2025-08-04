@@ -1,4 +1,4 @@
- import { contactsCollection } from '../db/models/contacts.js';
+import { contactsCollection } from '../db/models/contacts.js';
 import { calculatePaginationData } from '../utils/calculatePaginationData.js';
 
 export const getAllContacts = async ({ page, perPage, sortBy, sortOrder, isFavourite, type }, ownerId) => {
@@ -22,6 +22,7 @@ export const getAllContacts = async ({ page, perPage, sortBy, sortOrder, isFavou
     .limit(limit)
     .sort({ [sortBy]: sortOrder })
     .exec();
+
   const paginationData = calculatePaginationData(totalContacts, perPage, page);
 
   return {
@@ -36,20 +37,24 @@ export const getContactById = async (id, ownerId) => {
 };
 
 export const createContact = async (payload, ownerId) => {
-  const newContact = await contactsCollection.create({ ownerId, ...payload });
+  const newContact = await contactsCollection.create({
+    ...payload,
+    userId: ownerId,
+  });
   return newContact;
 };
 
 export const updateContactById = async (id, payload, ownerId) => {
-  const options = {
-    new: true,
-
-  };
-  const updatedContact = await contactsCollection.findOneAndUpdate({ _id: id, userId: ownerId }, payload, options);
+  const options = { new: true };
+  const updatedContact = await contactsCollection.findOneAndUpdate(
+    { _id: id, userId: ownerId },
+    payload,
+    options
+  );
   return updatedContact;
 };
 
 export const deleteContactById = async (id, ownerId) => {
-  const updatedContact = await contactsCollection.findOneAndDelete({ _id: id, userId: ownerId });
-  return updatedContact;
+  const deletedContact = await contactsCollection.findOneAndDelete({ _id: id, userId: ownerId });
+  return deletedContact;
 };
