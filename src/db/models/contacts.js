@@ -6,10 +6,7 @@ const contactsSchema = new Schema(
     name: { type: String, required: true },
     phoneNumber: { type: String, required: true },
     email: { type: String, default: null },
-<<<<<<< HEAD
     photo: { type: String, default: null },
-=======
->>>>>>> hw5-auth
     isFavourite: { type: Boolean, default: false },
     contactType: {
       type: String,
