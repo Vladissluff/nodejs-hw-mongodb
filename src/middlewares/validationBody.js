@@ -1,6 +1,10 @@
 import createHttpError from 'http-errors';
 import { bodyValidationSchema } from '../validation/contacts.js';
+<<<<<<< HEAD
 import { requestResetPwdEmailSchema, resetAuthPasswordSchema, userValidationSchema } from '../validation/auth.js';
+=======
+import { userValidationSchema } from '../validation/auth.js';
+>>>>>>> hw5-auth
 
 export const validationBody = (schema) => async (request, response, next) => {
   try {
@@ -15,9 +19,12 @@ export const validationBody = (schema) => async (request, response, next) => {
 export const registerUserBodyCheck = validationBody(userValidationSchema);
 export const loginUserBodyCheck = validationBody(userValidationSchema.fork(['name'], (field) => field.optional()));
 
+<<<<<<< HEAD
 export const requestResetPwdBodyCheck = validationBody(requestResetPwdEmailSchema);
 export const resetAuthPasswordBodyCheck = validationBody(resetAuthPasswordSchema);
 
+=======
+>>>>>>> hw5-auth
 export const updateContactBodyCheck = validationBody(bodyValidationSchema);
 export const createContactBodyCheck = validationBody(
   bodyValidationSchema.fork(['name', 'phoneNumber'], (field) => field.required())

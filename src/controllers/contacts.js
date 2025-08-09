@@ -10,7 +10,10 @@ import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 import { parseSortParams } from '../utils/parseSortParams.js';
 import { parseFilterParams } from '../utils/parseFilterParams.js';
+<<<<<<< HEAD
 import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
+=======
+>>>>>>> hw5-auth
 
 export const getAllContactsController = ctrlWrapper(async (request, response) => {
   const ownerId = request.user._id;
@@ -43,6 +46,7 @@ export const getContactByIdController = ctrlWrapper(async (request, response) =>
 });
 
 export const createContactController = ctrlWrapper(async (request, response) => {
+<<<<<<< HEAD
   const photo = request.file;
   // console.log(photo);
   // photo: {
@@ -61,6 +65,8 @@ export const createContactController = ctrlWrapper(async (request, response) => 
     request.body.photo = userPhotoPath;
   }
 
+=======
+>>>>>>> hw5-auth
   const ownerId = request.user._id;
   const newContact = await createContact(request.body, ownerId);
 
@@ -72,11 +78,14 @@ export const createContactController = ctrlWrapper(async (request, response) => 
 });
 
 export const updateContactByIdController = ctrlWrapper(async (request, response) => {
+<<<<<<< HEAD
   const photo = request.file;
   if (photo) {
     const userPhotoPath = await saveFileToCloudinary(photo);
     request.body.photo = userPhotoPath;
   }
+=======
+>>>>>>> hw5-auth
   const { contactId } = request.params;
   const ownerId = request.user._id;
   const result = await updateContactById(contactId, request.body, ownerId);
