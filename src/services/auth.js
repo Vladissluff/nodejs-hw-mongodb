@@ -3,6 +3,23 @@ import bcrypt from 'bcrypt';
 import createHttpError from 'http-errors';
 import { usersCollection } from '../db/usersModel.js';
 import { SessionsCollection } from '../db/sessionsModel.js';
+<<<<<<< HEAD
+import jwt from 'jsonwebtoken';
+import { sendMail } from '../utils/sendMail.js';
+import path from 'node:path';
+import fs from 'node:fs/promises';
+import handlebars from 'handlebars';
+import {
+  ACCESS_TOKEN_TTL,
+  APP_DOMAIN,
+  JWT_SECRET,
+  JWT_TTL,
+  REFRESH_TOKEN_TTL,
+  SMTP_FROM,
+  TEMPLATE_DIR,
+} from '../constants/index.js';
+=======
+>>>>>>> hw5-auth
 
 export const registerUser = async (payload) => {
   const user = await usersCollection.findOne({ email: payload.email });
@@ -48,10 +65,58 @@ export const logoutUser = async (sessionId) => {
   await SessionsCollection.deleteOne({ _id: sessionId });
 };
 
+<<<<<<< HEAD
+
+export const requestResetToken = async (email) => {
+  const user = await usersCollection.findOne({ email });
+
+  if (!user) return;
+
+  const resetToken = jwt.sign({ sub: user._id, email }, JWT_SECRET, { expiresIn: JWT_TTL });
+
+  const resertPwdLetterTemplatePath = path.join(TEMPLATE_DIR, 'reset-password-email.html');
+  const resertPwdLetterTemplate = (await fs.readFile(resertPwdLetterTemplatePath)).toString();
+  const template = handlebars.compile(resertPwdLetterTemplate);
+  const letterHtml = template({
+    name: user.name,
+    link: `${APP_DOMAIN}/reset-password?token=${resetToken}`,
+  });
+
+  try {
+    await sendMail({
+      from: SMTP_FROM,
+      to: email,
+      subject: 'Password reset confirmation',
+      html: letterHtml,
+    });
+  } catch (error) {
+    console.error(error);
+    throw createHttpError(500, 'Failed to send the email, please try again later.');
+  }
+};
+
+export const resetAuthPassword = async ({ password, token }) => {
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await usersCollection.findByIdAndUpdate(decoded.sub, { password: hashedPassword });
+    if (!user) throw createHttpError(404, 'User not found');
+    await SessionsCollection.findOneAndDelete({ userId: user._id });
+  } catch (error) {
+    if (error.name === 'TokenExpiredError' || error.name === 'TokenExpiredError')
+      throw createHttpError(401, 'Token is expired or invalid.');
+    throw error;
+  }
+};
+
+
+const createSession = async (userId) => {
+=======
 const createSession = async (userId) => {
   const accessTokenTTL = 15 * 60 * 1000; //FIFTEEN_MINUTES
   const refreshTokenTTL = 24 * 60 * 60 * 1000; //ONE_DAY
 
+>>>>>>> hw5-auth
   const accessToken = randomBytes(30).toString('base64');
   const refreshToken = randomBytes(30).toString('base64');
 
@@ -59,7 +124,12 @@ const createSession = async (userId) => {
     userId,
     accessToken,
     refreshToken,
+<<<<<<< HEAD
+    accessTokenValidUntil: new Date(Date.now() + ACCESS_TOKEN_TTL),
+    refreshTokenValidUntil: new Date(Date.now() + REFRESH_TOKEN_TTL),
+=======
     accessTokenValidUntil: new Date(Date.now() + accessTokenTTL),
     refreshTokenValidUntil: new Date(Date.now() + refreshTokenTTL),
+>>>>>>> hw5-auth
   });
 };

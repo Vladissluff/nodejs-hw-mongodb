@@ -1,4 +1,15 @@
+<<<<<<< HEAD
+import {
+  loginUser,
+  logoutUser,
+  refreshUserSession,
+  registerUser,
+  requestResetToken,
+  resetAuthPassword,
+} from '../services/auth.js';
+=======
 import { loginUser, logoutUser, refreshUserSession, registerUser } from '../services/auth.js';
+>>>>>>> hw5-auth
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 
 export const registerUserController = ctrlWrapper(async (request, response) => {
@@ -46,6 +57,33 @@ export const logoutUserController = ctrlWrapper(async (request, response) => {
   response.status(204).end();
 });
 
+<<<<<<< HEAD
+//-----Password reset-----
+
+export const sendResetEmailController = ctrlWrapper(async (request, response) => {
+  await requestResetToken(request.body.email);
+
+  response.json({
+    message: 'Reset password email was successfully sent!',
+    status: 200,
+    data: {},
+  });
+});
+
+export const resetAuthPasswordController = ctrlWrapper(async (request, response) => {
+  await resetAuthPassword(request.body);
+
+  response.json({
+    message: 'Password has been successfully reset.',
+    status: 200,
+    data: {},
+  });
+});
+
+//-----HELPERS-----
+
+=======
+>>>>>>> hw5-auth
 const setupSession = (response, session) => {
   response.cookie('refreshToken', session.refreshToken, {
     httpOnly: true,

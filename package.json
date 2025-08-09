@@ -29,14 +29,30 @@
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
+<<<<<<< HEAD
+    "cloudinary": "^2.7.0",
+=======
+>>>>>>> hw5-auth
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.0.1",
     "express": "^5.1.0",
+<<<<<<< HEAD
+    "git-filter-repo": "^0.0.30",
+    "handlebars": "^4.7.8",
+    "http-errors": "^2.0.0",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.17.0",
+    "mongoose": "^8.17.1",
+    "multer": "^2.0.2",
+    "nodemailer": "^7.0.5",
+=======
     "http-errors": "^2.0.0",
     "joi": "^17.13.3",
     "mongodb": "^6.17.0",
     "mongoose": "^8.17.0",
+>>>>>>> hw5-auth
     "pino-http": "^10.5.0"
   }
 }
