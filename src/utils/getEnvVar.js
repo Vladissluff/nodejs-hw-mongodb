@@ -1,9 +1,5 @@
 import 'dotenv/config';
 
-<<<<<<< HEAD
-
-=======
->>>>>>> hw5-auth
 export const getEnvVar = (variable, defaultValue) => {
   if (process.env[variable] !== undefined || defaultValue !== undefined) {
     return process.env[variable] ?? defaultValue;

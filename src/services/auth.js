@@ -3,7 +3,6 @@ import bcrypt from 'bcrypt';
 import createHttpError from 'http-errors';
 import { usersCollection } from '../db/usersModel.js';
 import { SessionsCollection } from '../db/sessionsModel.js';
-<<<<<<< HEAD
 import jwt from 'jsonwebtoken';
 import { sendMail } from '../utils/sendMail.js';
 import path from 'node:path';
@@ -18,8 +17,6 @@ import {
   SMTP_FROM,
   TEMPLATE_DIR,
 } from '../constants/index.js';
-=======
->>>>>>> hw5-auth
 
 export const registerUser = async (payload) => {
   const user = await usersCollection.findOne({ email: payload.email });
@@ -65,7 +62,6 @@ export const logoutUser = async (sessionId) => {
   await SessionsCollection.deleteOne({ _id: sessionId });
 };
 
-<<<<<<< HEAD
 
 export const requestResetToken = async (email) => {
   const user = await usersCollection.findOne({ email });
@@ -111,12 +107,6 @@ export const resetAuthPassword = async ({ password, token }) => {
 
 
 const createSession = async (userId) => {
-=======
-const createSession = async (userId) => {
-  const accessTokenTTL = 15 * 60 * 1000; //FIFTEEN_MINUTES
-  const refreshTokenTTL = 24 * 60 * 60 * 1000; //ONE_DAY
-
->>>>>>> hw5-auth
   const accessToken = randomBytes(30).toString('base64');
   const refreshToken = randomBytes(30).toString('base64');
 
@@ -124,12 +114,7 @@ const createSession = async (userId) => {
     userId,
     accessToken,
     refreshToken,
-<<<<<<< HEAD
     accessTokenValidUntil: new Date(Date.now() + ACCESS_TOKEN_TTL),
     refreshTokenValidUntil: new Date(Date.now() + REFRESH_TOKEN_TTL),
-=======
-    accessTokenValidUntil: new Date(Date.now() + accessTokenTTL),
-    refreshTokenValidUntil: new Date(Date.now() + refreshTokenTTL),
->>>>>>> hw5-auth
   });
 };

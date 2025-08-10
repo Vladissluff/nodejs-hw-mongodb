@@ -22,10 +22,6 @@ export const getAllContacts = async ({ page, perPage, sortBy, sortOrder, isFavou
     .limit(limit)
     .sort({ [sortBy]: sortOrder })
     .exec();
-<<<<<<< HEAD
-=======
-
->>>>>>> hw5-auth
   const paginationData = calculatePaginationData(totalContacts, perPage, page);
 
   return {
@@ -40,40 +36,19 @@ export const getContactById = async (id, ownerId) => {
 };
 
 export const createContact = async (payload, ownerId) => {
-<<<<<<< HEAD
   const newContact = await contactsCollection.create({ userId: ownerId, ...payload });
-=======
-  const newContact = await contactsCollection.create({
-    ...payload,
-    userId: ownerId,
-  });
->>>>>>> hw5-auth
   return newContact;
 };
 
 export const updateContactById = async (id, payload, ownerId) => {
-<<<<<<< HEAD
   const options = {
     new: true,
   };
   const updatedContact = await contactsCollection.findOneAndUpdate({ _id: id, userId: ownerId }, payload, options);
-=======
-  const options = { new: true };
-  const updatedContact = await contactsCollection.findOneAndUpdate(
-    { _id: id, userId: ownerId },
-    payload,
-    options
-  );
->>>>>>> hw5-auth
   return updatedContact;
 };
 
 export const deleteContactById = async (id, ownerId) => {
-<<<<<<< HEAD
   const updatedContact = await contactsCollection.findOneAndDelete({ _id: id, userId: ownerId });
   return updatedContact;
-=======
-  const deletedContact = await contactsCollection.findOneAndDelete({ _id: id, userId: ownerId });
-  return deletedContact;
->>>>>>> hw5-auth
 };
