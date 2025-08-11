@@ -18,7 +18,7 @@ export const setupServer = () => {
   httpServer.use(pinoLogger({ transport: { target: 'pino-pretty' } }));
 
   httpServer.use(express.json()); 
-  
+
   httpServer.use(router);
 
   httpServer.use(notFoundHandler);
