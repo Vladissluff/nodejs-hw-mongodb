@@ -25,7 +25,7 @@
   "homepage": "https://github.com/Vladissluff/nodejs-hw-mongodb#readme",
   "devDependencies": {
     "@eslint/js": "^9.30.0",
-    "@redocly/cli": "^2.0.2",
+    "@redocly/cli": "^2.0.4",
     "eslint": "^9.30.0",
     "globals": "^16.3.0",
     "nodemon": "^3.1.10",
