@@ -12,8 +12,7 @@ tags:
   - name: Contacts
     description: Operations for contacts data.
 servers:
-  - url: http://localhost:3000
-  - url: https://contacts-book-7tj4.onrender.com
+  - url: https://nodejs-hw-mongodb-57pi.onrender.com
 paths:
   /auth/register:
     post:
