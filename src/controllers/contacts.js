@@ -44,17 +44,7 @@ export const getContactByIdController = ctrlWrapper(async (request, response) =>
 
 export const createContactController = ctrlWrapper(async (request, response) => {
   const photo = request.file;
-  // console.log(photo);
-  // photo: {
-  //   fieldname: 'photo',
-  //   originalname: 'Cat.jpg',
-  //   encoding: '7bit',
-  //   mimetype: 'image/jpeg',
-  //   destination: 'G:\\GoIt\\Projects\\DZ\\NodeJs\\nodejs-hw-mongodb\\src\\temp',
-  //   filename: 'photo_688a129eb08a2c1f1a3b0608.jpg',
-  //   path: 'G:\\GoIt\\Projects\\DZ\\NodeJs\\nodejs-hw-mongodb\\src\\temp\\photo_688a129eb08a2c1f1a3b0608.jpg',
-  //   size: 42899
-  // }
+
 
   if (photo) {
     const userPhotoPath = await saveFileToCloudinary(photo);
